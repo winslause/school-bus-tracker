@@ -4,9 +4,10 @@ let map: any;
 let markers: any[] = [];
 let routeLines: any[] = [];
 
+
 // Route data
 const stopsRoute1 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', icon: 'schoolIcon' },
+  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
   { lat: -1.17793, lng: 36.98324, title: 'New Paleah Wholesalers Ltd' },
   { lat: -1.19513, lng: 36.95832, title: 'MASTER BROWN INTERNATIONAL INSTITUTE' },
   { lat: -1.19392, lng: 36.93817, title: 'Kahawa Sukari Baptist Church' },
@@ -21,7 +22,7 @@ const stopsRoute1 = [
 ];
 
 const stopsRoute2 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', icon: 'schoolIcon' },
+  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
   { lat: -1.218972, lng: 36.923028, title: 'Kevis Beauty Salon and Barbershop' },
   { lat: -1.219500, lng: 36.924278, title: 'Jeremy Entertainments' },
   { lat: -1.220944, lng: 36.923417, title: 'Carlcare Service Ltd' },
@@ -35,7 +36,7 @@ const stopsRoute2 = [
 ];
 
 const stopsRoute3 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', icon: 'schoolIcon' },
+  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
   { lat: -1.226500, lng: 36.916972, title: 'Transline Galaxy - Kasarani' },
   { lat: -1.225611, lng: 36.919361, title: 'PCEA Ciiko Church' },
   { lat: -1.227083, lng: 36.918667, title: 'Kasarani Hunters Genesis 2nd Street' },
@@ -66,6 +67,8 @@ function showRoute(route: any) {
   clearRoute();
   route.forEach((stop: any) => {
     const marker = new google.maps.Marker({
+      size: new google.maps.Size(20,20),
+    anchor: new google.maps.Point(20,20),
       position: { lat: stop.lat, lng: stop.lng },
       map: map,
       title: stop.title,

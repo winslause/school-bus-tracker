@@ -240,6 +240,8 @@ const stopsRoute3 = [
   { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School' }
 ];
 
+
+
 const routes = {
   route1: stopsRoute1,
   route2: stopsRoute2,
@@ -255,13 +257,18 @@ let busInterval;
 
 function initMap() {
   directionsService = new google.maps.DirectionsService();
-  directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer = new google.maps.DirectionsRenderer(
+    {
+      suppressMarkers: true // Suppress default markers
+    }
+  );
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: { lat: -1.22419, lng: 36.9176 }
   });
 
   directionsRenderer.setMap(map);
+  
   // Initialize traffic layer
   trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
@@ -278,7 +285,15 @@ function initMap() {
   updateRoute(selectedRoute);
 }
 
+let currentMarkers = [];  // Array to store current route markers
+
+//let currentMarkers = [];  // Array to store current route markers
+
 function updateRoute(route) {
+  // Clear any existing markers on the map
+  currentMarkers.forEach(marker => marker.setMap(null));
+  currentMarkers = [];  // Reset the markers array
+
   $('#route-stops').empty();
   $('#route-status').text('Route Status: Active');
 
@@ -302,6 +317,20 @@ function updateRoute(route) {
 
       selectedStops.forEach(stop => {
         $('#route-stops').append(`<li class="incomplete">${stop.title}</li>`);
+        
+        // Add custom markers for each stop
+        const marker = new google.maps.Marker({
+          position: { lat: stop.lat, lng: stop.lng },
+          map: map,
+          icon: stop.icon || {
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png", // Default flat marker image
+            scaledSize: new google.maps.Size(20, 20), // Size of the marker
+            anchor: new google.maps.Point(12, 12) // Center the marker icon
+          }
+        });
+
+        // Store the marker in the currentMarkers array to manage visibility
+        currentMarkers.push(marker);
       });
 
       animateBus(routePath);
@@ -311,6 +340,7 @@ function updateRoute(route) {
     }
   });
 }
+
 
 function animateBus(path) {
   if (busInterval) {
@@ -346,6 +376,7 @@ function animateBus(path) {
   }, busMovementTime); // Move bus every 'busMovementTime' ms
 }
 
+
 // Change route based on user selection
 $('#routeSelect').on('change', function () {
   selectedRoute = $(this).val();
@@ -353,5 +384,6 @@ $('#routeSelect').on('change', function () {
 });
 
   </script>
+
 </body>
 </html>
