@@ -18,12 +18,7 @@ function initMap(): void {
 
   // First route (using the same Mount Laverna School as start point)
   const stopsRoute1 = [
-    {
-      lat: -1.22419,
-      lng: 36.9176,
-      title: "Mount Laverna School",
-      icon: schoolIcon,
-    }, // Starting point for Route 1
+    {lat: -1.22419, lng: 36.9176, title: "Mount Laverna School", icon: schoolIcon,}, // Starting point for Route 1
     { lat: -1.17793, lng: 36.98324, title: "New Paleah Wholesalers Ltd" },
     {
       lat: -1.19513,
@@ -104,6 +99,75 @@ function initMap(): void {
     },
     { lat: -1.22419, lng: 36.9176, title: "Mount Laverna School" }, // Same starting point for Route 3
   ];
+
+   // New route for Route 4
+  const stopsRoute4 = [
+    {
+      lat: -1.22419,
+      lng: 36.9176,
+      title: "Mount Laverna School",
+      icon: schoolIcon,
+    }, // Starting point for Route 4 (using Mount Laverna School as start)
+    { lat: -1.21744, lng: 36.91133, title: "Beatriz La Roca Apartments" },
+    { lat: -1.21892, lng: 36.91461, title: "Mama Fauzia Children's Home" },
+    { lat: -1.21961, lng: 36.91267, title: "Rosapharm Industrial Park" },
+    { lat: -1.21894, lng: 36.91144, title: "Mwangi Kariba Hardware And Tools" },
+    { lat: -1.22303, lng: 36.91192, title: "Maternity Stage" },
+    { lat: -1.22103, lng: 36.90536, title: "Warren Concrete Ltd" },
+    { lat: -1.21861, lng: 36.90817, title: "Olalem Chemist" },
+    { lat: -1.21706, lng: 36.90533, title: "Arise Apartment, Seasons Kasarani" },
+    { lat: -1.21689, lng: 36.91025, title: "Millenium Heights" },
+    { lat: -1.21497, lng: 36.90892, title: "The Bliss Place" },
+    { lat: -1.21519, lng: 36.90719, title: "Alpine Chalet Kasarani" },
+    { lat: -1.22419, lng: 36.9176, title: "Mount Laverna School" }, // Return to starting point
+  ];
+  // New route for Route 5
+  const stopsRoute5 = [
+    {
+      lat: -1.22419,
+      lng: 36.9176,
+      title: "Mount Laverna School",
+      icon: schoolIcon,
+    }, // Starting point for Route 5 (using Mount Laverna School as start)
+    { lat: -1.223487, lng: 36.902212, title: "Kasarani Chief's Camp" },
+    { lat: -1.22053, lng: 36.90278, title: "Kasarani Health Centre" },
+    { lat: -1.22206, lng: 36.89928, title: "St. Marys Sportsview Academy" },
+    { lat: -1.21797, lng: 36.89953, title: "Kassmatt Supermarket - Kasarani" },
+    { lat: -1.22089, lng: 36.89647, title: "ENVIRONMENTAL LIAISON CENTRE INTERNATIONAL" },
+    { lat: -1.22431, lng: 36.89489, title: "Gifts By Wiggi" },
+    { lat: -1.22164, lng: 36.89522, title: "HIVE CAR TINTING" },
+    { lat: -1.21992, lng: 36.89419, title: "KARIUKI MURIUKI & COMPANY ADVOCATES" },
+    { lat: -1.21950, lng: 36.88208, title: "Topace Studio Apartments" },
+    { lat: -1.21933, lng: 36.88653, title: "Roybahn Heights Apartments" },
+    { lat: -1.21758, lng: 36.88933, title: "Fleek Car Accessories" },
+    { lat: -1.21536, lng: 36.88614, title: "Happy Life Children's Home" },
+    { lat: -1.21569, lng: 36.88300, title: "Rhoda Muthangya" },
+    { lat: -1.22419, lng: 36.9176, title: "Mount Laverna School" }, // Return to starting point
+  ];
+
+    // Function to save routes to local storage
+  function saveRoutesToLocalStorage(routes: any[]) {
+    localStorage.setItem('routes', JSON.stringify(routes));
+  }
+
+  // Function to load routes from local storage
+  function loadRoutesFromLocalStorage(): any[] {
+    const storedRoutes = localStorage.getItem('routes');
+    return storedRoutes ? JSON.parse(storedRoutes) : [];
+  }
+
+   // Load existing routes or initialize with default routes
+  let allRoutes = loadRoutesFromLocalStorage();
+  if (allRoutes.length === 0) {
+    allRoutes = [
+      { name: 'Route 1', stops: stopsRoute1, color: '#0000FF' },
+      { name: 'Route 2', stops: stopsRoute2, color: '#00FF00' },
+      { name: 'Route 3', stops: stopsRoute3, color: '#FF0000' },
+      { name: 'Route 4', stops: stopsRoute4, color: '#FFFF00' },
+      { name: 'Route 5', stops: stopsRoute5, color: '#FFA500' }
+    ];
+    saveRoutesToLocalStorage(allRoutes); // Save initial routes
+  }
 
   // Function to render a route and animate the bus
   function renderRouteAndAnimateBus(
@@ -230,6 +294,18 @@ function initMap(): void {
     "https://img.icons8.com/color/48/bus.png",
     "#FF0000"
   ); // Route 3 (red)
+  renderRouteAndAnimateBus(
+   stopsRoute4,
+    "https://img.icons8.com/color/48/bus.png",
+    "#FFFF00" // Yellow color for Route 4
+  );
+  // Render and animate the bus on Route 5
+  renderRouteAndAnimateBus(
+    stopsRoute5,
+    "https://img.icons8.com/color/48/bus.png",
+    "#FFA500" // Orange color for Route 5
+  );
+
 }
 
 declare global {

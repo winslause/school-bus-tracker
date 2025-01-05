@@ -5,94 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Route Management</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-    }
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-    /* Sidebar styles */
-    .sidebar {
-      height: 100vh;
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #f8f9fa;
-      padding: 20px;
-      overflow-y: auto;
-    }
+  /* Sidebar styles */
+  .sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1; /* Ensures sidebar is behind content */
+  }
 
-    .sidebar a {
-      color: #333;
-      font-size: 18px;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-    }
+  .sidebar a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+  }
 
-    .sidebar a:hover {
-      background-color: #007bff;
-      color: #fff;
-    }
+  .sidebar a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
 
-    /* Content area */
-    .content {
-      margin-left: 250px;
-      padding: 20px;
-      height: calc(100vh - 40px);
-      overflow: auto;
-    }
+  /* Content area */
+  .content {
+    margin-left: 250px; /* Matches the width of the sidebar */
+    margin-right: 300px; /* Matches the width of the route-details-sidebar */
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box; /* Ensures padding does not affect total width */
+  }
 
-    /* Right Sidebar for Route Details */
-    .route-details-sidebar {
-      height: 100vh;
-      width: 300px;
-      position: fixed;
-      top: 0;
-      right: 0;
-      background-color: #fff;
-      padding: 20px;
-      border-left: 1px solid #ddd;
-      overflow-y: auto;
-    }
+  /* Right Sidebar for Route Details */
+  .route-details-sidebar {
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    overflow-y: auto;
+    z-index: 1; /* Ensures sidebar is behind content */
+  }
 
-    .route-details h4 {
-      font-weight: bold;
-    }
+  .route-details h4 {
+    font-weight: bold;
+  }
 
-    .route-status {
-      background-color: #e5f8e8;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: center;
-      color: #28a745;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+  .route-status {
+    background-color: #e5f8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
-    .route-stops {
-      list-style: none;
-      padding-left: 0;
-    }
+  .route-stops {
+    list-style: none;
+    padding-left: 0;
+  }
 
-    .route-stops li {
-      padding: 5px 0;
-    }
+  .route-stops li {
+    padding: 5px 0;
+  }
 
-    .completed {
-      color: #28a745; /* Green for completed stops */
-    }
+  .completed {
+    color: #28a745; /* Green for completed stops */
+  }
 
-    .incomplete {
-      color: #dc3545; /* Red for incomplete stops */
-    }
+  .incomplete {
+    color: #dc3545; /* Red for incomplete stops */
+  }
 
-    /* Map container */
-    #map {
-      height: 100%;
-      width: 100%;
-      min-height: 500px;
-    }
-  </style>
+  /* Map container */
+  #map {
+    height: 100%;
+    width: 100%;
+    min-height: 500px;
+  }
+</style>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -111,6 +116,12 @@
   <div class="content">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2>Route Management</h2>
+      <div class="d-flex align-items-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1581/1581908.png" width="40px" height="40px" alt="Admin User" class="rounded-circle">
+        <div class="ml-2">
+          <p class="mb-0">Driver View</p>
+        </div>
+      </div>
     </div>
 
     <!-- Route Selection Dropdown -->
