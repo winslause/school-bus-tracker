@@ -5,126 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Route Management</title>
   <style>
-   body {
-  font-family: 'Arial', sans-serif;
-}
-
-/* Sidebar styles */
-.sidebar {
-  height: 100vh;
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #f8f9fa;
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 2; /* Ensure it stays on top of the content */
-}
-
-.sidebar a {
-  color: #333;
-  font-size: 18px;
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-}
-
-.sidebar a:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Content area */
-.content {
-  margin-left: 250px; /* Adjusted to match the width of the left sidebar */
-  margin-right: 300px; /* Adjusted to match the width of the right sidebar */
-  padding: 20px;
-  height: calc(100vh - 40px);
-  overflow: auto;
-}
-
-/* Right Sidebar for Route Details */
-.route-details-sidebar {
-  height: 100vh;
-  width: 300px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #fff;
-  padding: 20px;
-  border-left: 1px solid #ddd;
-  overflow-y: auto;
-  z-index: 2; /* Ensure it stays on top of the content */
-}
-
-.route-details h4 {
-  font-weight: bold;
-}
-
-.route-status {
-  background-color: #e5f8e8;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  color: #28a745;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.route-stops {
-  list-style: none;
-  padding-left: 0;
-}
-
-.route-stops li {
-  padding: 5px 0;
-}
-
-/* Stop card styling */
-.stop-card {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-/* Map container */
-#map {
-  height: 100%;
-  width: 100%;
-  min-height: 500px;
-}
-
-/* Additional styles for the form */
-.form-group select.form-select-sm {
-  width: 200px;
-  display: inline-block;
-}
-
-.form-group label {
-  font-weight: bold;
-}
-
-button[type="submit"] {
-  width: 100%;
-}
-
-/* Driver and Bus Details in Right Sidebar */
-#driver-details, #bus-details {
-  margin-top: 20px;
-}
-
-#driver-details h4, #bus-details h4 {
-  font-weight: bold;
-}
-
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+  
+    /* Sidebar styles */
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #f8f9fa;
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 2; /* Ensure it stays on top of the content */
+    }
+  
+    .sidebar a {
+      color: #333;
+      font-size: 18px;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }
+  
+    .sidebar a:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+  
+    /* Content area */
+    .content {
+      margin-left: 250px; /* Adjusted to match the width of the left sidebar */
+      margin-right: 300px; /* Adjusted to match the width of the right sidebar */
+      padding: 20px;
+      height: calc(100vh - 40px);
+      overflow: auto;
+    }
+  
+    /* Right Sidebar for Route Details */
+    .route-details-sidebar {
+      height: 100vh;
+      width: 300px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      padding: 20px;
+      border-left: 1px solid #ddd;
+      overflow-y: auto;
+      z-index: 2; /* Ensure it stays on top of the content */
+    }
+  
+    .route-details h4 {
+      font-weight: bold;
+    }
+  
+    .route-status {
+      background-color: #e5f8e8;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: #28a745;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .route-stops {
+      list-style: none;
+      padding-left: 0;
+    }
+  
+    .route-stops li {
+      padding: 5px 0;
+    }
+  
+    /* Stop card styling */
+    .stop-card {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+  
+    /* Map container */
+    #map {
+      height: 100%;
+      width: 100%;
+      min-height: 500px;
+    }
+  
+    /* Additional styles for the form */
+    .form-group select.form-select-sm {
+      width: 200px;
+      display: inline-block;
+    }
+  
+    .form-group label {
+      font-weight: bold;
+    }
+  
+    button[type="submit"] {
+      width: 100%;
+    }
+  
+    /* Driver and Bus Details in Right Sidebar */
+    #driver-details, #bus-details {
+      margin-top: 20px;
+    }
+  
+    #driver-details h4, #bus-details h4 {
+      font-weight: bold;
+    }
+  
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 10px 0;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+  
+      .sidebar a {
+        display: inline-block;
+        font-size: 14px;
+        margin: 0 5px;
+        padding: 5px 10px;
+        white-space: nowrap;
+      }
+  
+      .content {
+        margin-left: 0; /* Reset margins for smaller screens */
+        margin-right: 0;
+        padding-top: 0;
+      }
+  
+      .route-details-sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-left: none;
+        border-top: 1px solid #ddd;
+        margin-top: -20px; /* Move up to reduce white space */
+      }
+  
+      #map {
+        min-height: 300px; /* Adjust map height for smaller screens */
+      }
+    }
+  
+    @media (max-width: 576px) {
+      .sidebar a {
+        font-size: 12px;
+        margin: 0 3px;
+        padding: 3px 5px;
+      }
+  
+      #map {
+        min-height: 200px; /* Further adjust map height for very small screens */
+      }
+    }
   </style>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="container">
   <!-- Left Sidebar -->
   <div class="sidebar">
     <h2>BusTracker</h2>
@@ -133,6 +183,8 @@ button[type="submit"] {
     <a href="route.html"><i class="fas fa-route"></i> Routes</a>
     <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
     <a href="settings.html"><i class="fas fa-cogs"></i> Settings</a>
+    <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
   </div>
 
   <!-- Main Content -->
@@ -150,12 +202,12 @@ button[type="submit"] {
 
     <!-- Route Selection Dropdown -->
     <div class="form-group">
-      <select id="viewSelect" class="form-select form-select-sm">
+      <!--<select id="viewSelect" class="form-select form-select-sm">
           <option value="">Select View</option>
            <option value="admin">Admin View</option>
           <option value="driver">Driver View</option>
           <option value="parent">Parent View</option>
-        </select>
+        </select>-->
     <br>
 <script>
     document.getElementById('viewSelect').addEventListener('change', function() {
@@ -172,19 +224,7 @@ button[type="submit"] {
   </script>
       
       </div>
-<script>
-    document.getElementById('viewSelect').addEventListener('change', function() {
-      const selectedValue = this.value;
-      
-      if (selectedValue === 'admin') {
-        window.location.href = 'index1.html';  // Replace with your actual Admin page link
-      } else if (selectedValue === 'driver') {
-        window.location.href = 'driver.html';  // Replace with your actual Driver page link
-      } else if (selectedValue === 'parent') {
-        window.location.href = 'parent.html';  // Replace with your actual Parent page link
-      }
-    });
-  </script>
+
   <div class="container mt-5">
     <h2 class="mb-4 text-center">Add a Stop</h2>
     <form  id="addStopForm">

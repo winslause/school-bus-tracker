@@ -19,7 +19,7 @@
         margin: 0;
         padding: 0;
       }
-
+    
       .sidebar {
         height: 100vh;
         width: 250px;
@@ -33,7 +33,7 @@
         transition: all 0.3s ease;
         z-index: 1000; /* Ensure sidebar is on top */
       }
-
+    
       .sidebar a {
         color: #333;
         font-size: 18px;
@@ -41,24 +41,24 @@
         padding: 10px;
         display: block;
       }
-
+    
       .sidebar a:hover {
         background-color: #007bff;
         color: #fff;
       }
-
+    
       .sidebar.collapsed {
         width: 80px;
       }
-
+    
       .sidebar.collapsed a {
         text-align: center;
       }
-
+    
       .sidebar.collapsed h2 {
         display: none;
       }
-
+    
       .content {
         margin-left: 250px;
         padding: 20px;
@@ -66,11 +66,11 @@
         overflow: auto;
         transition: margin-left 0.3s ease;
       }
-
+    
       .content.collapsed {
         margin-left: 80px;
       }
-
+    
       .bus-card {
         border: 1px solid #ddd;
         border-radius: 10px;
@@ -78,40 +78,89 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
       }
-
+    
       .form-group label {
         font-weight: bold;
       }
-
+    
       .table th,
       .table td {
         text-align: center;
       }
-
+    
       .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
       }
-
+    
+      /* Map container */
+      #map {
+        height: 100%;
+        width: 100%;
+        min-height: 500px; /* Ensure the map has a minimum height */
+        overflow: auto; /* Add scrollbar for map section */
+      }
+    
+      /* Media queries for responsiveness */
       @media (max-width: 768px) {
         .sidebar {
-          width: 200px;
+          width: 100%;
+          height: auto;
+          position: static;
+          padding: 10px 0;
+          white-space: nowrap;
+          overflow-x: auto;
         }
-
+    
+        .sidebar a {
+          display: inline-block;
+          font-size: 14px;
+          margin: 0 5px;
+          padding: 5px 10px;
+          white-space: nowrap;
+        }
+    
         .content {
           margin-left: 0;
+          padding-bottom: 0; /* Reduce space at the bottom */
+        }
+    
+        .route-details-sidebar {
+          margin-top: -20px; /* Move up the route details to overlap slightly */
+        }
+    
+        #map {
+          min-height: 300px; /* Adjust map height for smaller screens */
         }
       }
-
+    
       @media (max-width: 576px) {
         .sidebar {
-          width: 60px;
+          width: 100%;
+          height: auto;
+          position: static;
+          padding: 5px 0;
         }
-
+    
+        .sidebar a {
+          font-size: 12px;
+          margin: 0 3px;
+          padding: 3px 5px;
+        }
+    
         .content {
           margin-left: 0;
+          padding-bottom: 0; /* Reduce space at the bottom */
+        }
+    
+        .route-details-sidebar {
+          margin-top: -20px; /* Move up the route details to overlap slightly */
+        }
+    
+        #map {
+          min-height: 200px; /* Further adjust map height for very small screens */
         }
       }
     </style>
@@ -126,13 +175,14 @@
       <a href="route.html"><i class="fas fa-route"></i>Routes</a>
       <a href="notifications.html"><i class="fas fa-bell"></i>Notifications</a>
       <a href="settings.html"><i class="fas fa-cogs"></i>Settings</a>
+      <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <!-- Main Content -->
     <div class="content" id="content">
       <div class="header">
-        <button class="btn btn-dark" id="toggleBtn">
-          <i class="fas fa-bars"></i>
+        
+          
         </button>
         <h2>Bus Management</h2>
         <div class="d-flex align-items-center">
@@ -192,6 +242,8 @@
       <!-- Bus List Table -->
       <div class="bus-card">
         <h4>Bus List</h4>
+
+        <div class="table-responsive">
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
@@ -207,6 +259,7 @@
             <!-- Bus data will be dynamically added here -->
           </tbody>
         </table>
+      </div>
       </div>
     </div>
 

@@ -8,16 +8,18 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/lucide-icons@0.1.9/dist/lucide.min.js"></script>
     <style>
       .notification-card {
         border-left: 4px solid transparent;
       }
-
+    
       .notification-card.new {
         border-left-color: #3b82f6;
       }
-
+    
       .modal-bg {
         position: fixed;
         top: 0;
@@ -26,7 +28,7 @@
         bottom: 0;
         background: rgba(0, 0, 0, 0.5);
       }
-
+    
       .modal-content {
         position: absolute;
         top: 50%;
@@ -38,7 +40,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-
+    
       .sidebar {
         width: 250px;
         height: 100vh;
@@ -48,27 +50,66 @@
         background-color: #2d3748;
         padding: 20px;
         color: white;
+        z-index: 1000; /* Ensure sidebar stays on top */
       }
-
+    
       .sidebar h2 {
         font-size: 24px;
         margin-bottom: 20px;
       }
-
+    
       .sidebar a {
         display: block;
         margin: 15px 0;
         color: white;
         text-decoration: none;
       }
-
+    
       .sidebar a i {
         margin-right: 10px;
       }
-
+    
       .content {
         margin-left: 260px;
         padding: 20px;
+        transition: margin-left 0.3s ease; /* Smooth transition for sidebar collapse */
+      }
+    
+      /* Media queries for responsiveness */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: static;
+          padding: 10px 0;
+          white-space: nowrap;
+          overflow-x: auto;
+        }
+    
+        .sidebar h2 {
+          display: none; /* Hide the title on smaller screens */
+        }
+    
+        .sidebar a {
+          display: inline-block;
+          font-size: 14px;
+          margin: 0 5px;
+          padding: 5px 10px;
+          white-space: nowrap;
+        }
+    
+        .content {
+          margin-left: 0;
+          padding-top: 0; /* Reduce any top padding to minimize space */
+        }
+      }
+    
+      @media (max-width: 576px) {
+        .sidebar a {
+          font-size: 12px;
+          margin: 0 3px;
+          padding: 3px 5px;
+        }
       }
     </style>
   </head>
@@ -82,6 +123,8 @@
       <a href="route.html"><i class="fas fa-route"></i>Routes</a>
       <a href="notifications.html"><i class="fas fa-bell"></i>Notifications</a>
       <a href="settings.html"><i class="fas fa-cogs"></i>Settings</a>
+      <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
     </div>
 
     <!-- Main Content Area -->
@@ -90,6 +133,7 @@
         <div class="flex justify-between items-center mb-6">
           <div>
             <h2 class="text-2xl font-bold">Notifications</h2>
+            <!--
             <center>
               <select id="viewSelect" class="form-select form-select-sm">
                 <option value="admin">select View</option>
@@ -97,7 +141,7 @@
                 <option value="driver">Driver View</option>
                 <option value="parent">Parent View</option>
               </select>
-            </center>
+            </center>-->
             <script>
               document
                 .getElementById("viewSelect")
@@ -116,14 +160,15 @@
 
             <!-- <p id="unread-count" class="text-sm text-gray-500">0 unread notifications</p> -->
           </div>
-          <div class="flex gap-4">
+          <div class=" gap-4">
             <button
               id="send-notification-btn"
               class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               <span class="lucide lucide-message-circle w-4 h-4"></span> Send
               Notification
-            </button>
+            </button><br>
+            <br>
             <select
               id="notification-filter"
               class="border rounded-lg px-3 py-2"
@@ -142,7 +187,7 @@
         <!-- Send Notification Modal -->
         <div id="send-notification-modal" class="modal-bg hidden">
           <div class="modal-content">
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex justify-between mb-4">
               <h3 class="text-lg font-semibold">Send Notification</h3>
               <button
                 id="close-modal"
