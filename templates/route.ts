@@ -7,7 +7,7 @@ let routeLines: any[] = [];
 
 // Route data
 const stopsRoute1 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School', },
   { lat: -1.17793, lng: 36.98324, title: 'New Paleah Wholesalers Ltd' },
   { lat: -1.19513, lng: 36.95832, title: 'MASTER BROWN INTERNATIONAL INSTITUTE' },
   { lat: -1.19392, lng: 36.93817, title: 'Kahawa Sukari Baptist Church' },
@@ -18,11 +18,11 @@ const stopsRoute1 = [
   { lat: -1.19475, lng: 36.95216, title: 'Kijana Msafi Caterers' },
   { lat: -1.16475, lng: 36.95007, title: 'Sara kwa booster' },
   { lat: -1.19722, lng: 36.90549, title: 'Horeb Ministries Githurai 45' },
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School' }
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School' }
 ];
 
 const stopsRoute2 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School', },
   { lat: -1.218972, lng: 36.923028, title: 'Kevis Beauty Salon and Barbershop' },
   { lat: -1.219500, lng: 36.924278, title: 'Jeremy Entertainments' },
   { lat: -1.220944, lng: 36.923417, title: 'Carlcare Service Ltd' },
@@ -32,11 +32,11 @@ const stopsRoute2 = [
   { lat: -1.222750, lng: 36.924944, title: 'Dove Apartments' },
   { lat: -1.221111, lng: 36.927861, title: 'Zion Temple Kasarani' },
   { lat: -1.221417, lng: 36.926611, title: 'Kibukahs Apartments' },
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School' }
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School' }
 ];
 
 const stopsRoute3 = [
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School', },
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School', },
   { lat: -1.226500, lng: 36.916972, title: 'Transline Galaxy - Kasarani' },
   { lat: -1.225611, lng: 36.919361, title: 'PCEA Ciiko Church' },
   { lat: -1.227083, lng: 36.918667, title: 'Kasarani Hunters Genesis 2nd Street' },
@@ -50,13 +50,13 @@ const stopsRoute3 = [
   { lat: -1.225778, lng: 36.929000, title: 'LPG Gas Authorized Dealer' },
   { lat: -1.226167, lng: 36.932833, title: '13th Street - Deliverance Road' },
   { lat: -1.233028, lng: 36.930306, title: 'Deliverance Church Kasarani Mwiki' },
-  { lat: -1.22419, lng: 36.9176, title: 'Mount Laverna School' }
+  { lat: -1.22419, lng: 36.9176, title: 'Anthena School' }
 ];
 
 // Initialize map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -1.22419, lng: 36.9176 },  // Default center (Mount Laverna School)
+    center: { lat: -1.22419, lng: 36.9176 },  // Default center (Anthena School)
     zoom: 14,
     scrollwheel: true,  // Enable map scroll zoom
   });
